@@ -35,7 +35,7 @@ def pessoaSalvar(request):
         pessoa.email = request.POST.get('email', '').upper()
         pessoa.telefone = request.POST.get('telefone', '(00) 0-0000-0000').upper()
         pessoa.logradouro = request.POST.get('logradouro', '').upper()
-
+        
         pessoa.save()
     return HttpResponseRedirect('/pessoas/')
 
@@ -52,6 +52,7 @@ def pessoaPesquisar(request):
                     Q(email__contains=textoBusca) | 
                     Q(telefone__contains=textoBusca) | 
                     Q(logradouro__contains=textoBusca))).order_by('-nome')  #BUSCA POR NOME OU EMAIL OU TELEFONE OU LOGRADOURO... E É ORDENADO POR NOME.
+                    
         except:
             pessoas = []
 
